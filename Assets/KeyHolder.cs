@@ -30,7 +30,7 @@ public class KeyHolder : MonoBehaviour
         );
     }
 
-    public void CheckDoor()
+    public void CheckDoor(Door door)
     {
         if (currentNotification != null)
             return;
@@ -40,6 +40,13 @@ public class KeyHolder : MonoBehaviour
             currentNotification = StartCoroutine(
                 ShowText($"You need to find {numberOfKeysLeft} more keys", 3f)
             );
+        }
+        else
+        {
+            currentNotification = StartCoroutine(
+                ShowText($"Door open!", 3f)
+            );
+            door.gameObject.SetActive(false);
         }
     }
 
